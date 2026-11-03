@@ -95,6 +95,39 @@ downloadButton.id = "download-certificate";
 
 preview.appendChild(downloadButton);
 
+// PDF Download Functionality
+
+downloadButton.addEventListener("click", function() {
+
+    const options = {
+        margin: 0.3,
+        filename: "My-Certificate.pdf",
+
+        image: {
+            type: "jpeg",
+            quality: 0.98
+        },
+
+        html2canvas: {
+            scale: 2,
+            useCORS: true
+        },
+
+        jsPDF: {
+            unit: "in",
+            format: "a4",
+            orientation: "landscape"
+        }
+    };
+
+    html2pdf()
+        .set(options)
+        .from(certificate)
+        .save();
+
+});
+
+
     // Scroll to preview
     preview.scrollIntoView({
         behavior: "smooth",
