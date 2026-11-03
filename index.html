@@ -30,10 +30,50 @@
         <p>Create certificates and verify achievements easily.</p>
     </section>
 
-    <section id="generate">
-        <h2>Generate Certificate</h2>
-        <p>Certificate generator coming soon!</p>
-    </section>
+    
+<section id="generate">
+    <h2>Generate Your Certificate</h2>
+    <p>Enter your achievement details below.</p>
+
+    <form id="certificate-form">
+
+        <input
+            type="text"
+            id="student-name"
+            placeholder="Student Name"
+            required
+        >
+
+        <input
+            type="text"
+            id="course-name"
+            placeholder="Achievement / Course Name"
+            required
+        >
+
+        <input
+            type="text"
+            id="organization"
+            placeholder="Organization Name"
+            required
+        >
+
+        <label for="issue-date">Issue Date</label>
+        <input
+            type="date"
+            id="issue-date"
+            required
+        >
+
+        <button type="submit" class="btn">
+            Generate Certificate
+        </button>
+
+    </form>
+
+    <div id="certificate-preview"></div>
+</section>
+
 
     <section id="verify">
         <h2>Verify Certificate</h2>
