@@ -84,6 +84,16 @@ certificateForm.addEventListener("submit", function(event) {
 
     // Display certificate
     preview.replaceChildren(certificate);
+// Create download button
+const downloadButton = document.createElement("button");
+
+downloadButton.textContent = "Download Certificate";
+
+downloadButton.className = "btn";
+
+downloadButton.id = "download-certificate";
+
+preview.appendChild(downloadButton);
 
     // Scroll to preview
     preview.scrollIntoView({
