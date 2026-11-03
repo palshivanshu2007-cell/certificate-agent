@@ -171,3 +171,73 @@ footer {
     max-width: 650px;
     margin: 30px auto;
 }
+
+/* Professional Certificate Design */
+
+.certificate {
+    background: #ffffff;
+    border: 8px double #c49a35;
+    padding: 35px 20px;
+    text-align: center;
+    color: #172554;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    position: relative;
+    overflow-wrap: anywhere;
+}
+
+.certificate::before {
+    content: "✦";
+    display: block;
+    color: #c49a35;
+    font-size: 35px;
+    margin-bottom: 12px;
+}
+
+.certificate h2 {
+    color: #a77b19;
+    font-size: 23px;
+    letter-spacing: 2px;
+    margin-bottom: 22px;
+}
+
+.certificate p {
+    margin: 14px 0;
+    font-size: 15px;
+}
+
+.certificate h1 {
+    color: #3730a3;
+    font-size: 32px;
+    margin: 20px 0;
+    overflow-wrap: anywhere;
+}
+
+.certificate h3 {
+    color: #a77b19;
+    margin: 20px 0;
+    font-size: 19px;
+}
+
+.certificate small {
+    display: block;
+    margin-top: 25px;
+    color: #64748b;
+    font-size: 12px;
+}
+
+/* Mobile Certificate Design */
+
+@media (max-width: 600px) {
+    .certificate {
+        padding: 25px 12px;
+        border-width: 5px;
+    }
+
+    .certificate h2 {
+        font-size: 18px;
+    }
+
+    .certificate h1 {
+        font-size: 25px;
+    }
+}
