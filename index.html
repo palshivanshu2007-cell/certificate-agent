@@ -76,10 +76,33 @@
 </section>
 
 
-    <section id="verify">
-        <h2>Verify Certificate</h2>
-        <p>Check certificate authenticity.</p>
-    </section>
+    
+<section id="verify">
+    <h2>Verify Your Certificate</h2>
+
+    <p>
+        Enter your Certificate ID to check its authenticity.
+    </p>
+
+    <form id="verify-form">
+
+        <input
+            type="text"
+            id="certificate-id"
+            placeholder="Enter Certificate ID"
+            required
+        >
+
+        <button type="submit" class="btn">
+            Verify Certificate
+        </button>
+
+    </form>
+
+    <div id="verification-result"></div>
+
+</section>
+
 
     <footer>
         <p>© 2026 Certificate Agent</p>
