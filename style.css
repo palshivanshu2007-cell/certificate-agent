@@ -114,3 +114,60 @@ footer {
         font-size: 29px;
     }
 }
+
+/* Certificate Generator Section */
+
+#generate {
+    background: #eef2ff;
+}
+
+#certificate-form {
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#certificate-form input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    font-family: Arial, sans-serif;
+}
+
+#certificate-form input:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99,102,241,0.12);
+}
+
+#certificate-form label {
+    text-align: left;
+    font-weight: bold;
+    color: #334155;
+}
+
+#certificate-form button {
+    border: none;
+    cursor: pointer;
+    background: #4f46e5;
+    color: white;
+}
+
+#certificate-form button:hover {
+    background: #3730a3;
+}
+
+/* Certificate Preview */
+
+#certificate-preview {
+    max-width: 650px;
+    margin: 30px auto;
+}
