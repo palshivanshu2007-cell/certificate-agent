@@ -1,7 +1,4 @@
 
-// CERTIFICATE AGENT
-// Certificate Generator and Verification
-
 const certificateForm = document.querySelector("#certificate-form");
 const preview = document.querySelector("#certificate-preview");
 const verifyForm = document.querySelector("#verify-form");
@@ -25,7 +22,6 @@ certificateForm.addEventListener("submit", function(event) {
             year: "numeric"
         });
 
-    // Save certificate in browser storage
     const records = JSON.parse(
         localStorage.getItem("certificateAgentRecords") || "{}"
     );
@@ -42,7 +38,6 @@ certificateForm.addEventListener("submit", function(event) {
         JSON.stringify(records)
     );
 
-    // Create certificate
     const certificate = document.createElement("div");
     certificate.className = "certificate";
 
@@ -74,27 +69,69 @@ certificateForm.addEventListener("submit", function(event) {
 
     preview.replaceChildren(certificate);
 
-    // Download PDF button
     const downloadButton = document.createElement("button");
     downloadButton.textContent = "Download Certificate";
     downloadButton.className = "btn";
 
     preview.appendChild(downloadButton);
 
-    downloadButton.addEventListener("click", function() {
-        const options = {
-            margin: 0.3,
-            filename: "My-Certificate.pdf",
-            image: { type: "jpeg", quality: 0.98 },
-            html2canvas: { scale: 2, useCORS: true },
-            jsPDF: {
-                unit: "in",
-                format: "a4",
-                orientation: "landscape"
-            }
-        };
+    downloadButton.addEventListener("click", async function() {
+        const exportCertificate = certificate.cloneNode(true);
 
-        html2pdf().set(options).from(certificate).save();
+        Object.assign(exportCertificate.style, {
+            width: "1000px",
+            minHeight: "700px",
+            padding: "60px",
+            boxSizing: "border-box",
+            background: "#ffffff",
+            color: "#172554",
+            textAlign: "center",
+            overflow: "visible"
+        });
+
+        const wrapper = document.createElement("div");
+
+        Object.assign(wrapper.style, {
+            position: "fixed",
+            left: "0",
+            top: "0",
+            width: "1000px",
+            background: "#ffffff",
+            zIndex: "99999"
+        });
+
+        wrapper.appendChild(exportCertificate);
+        document.body.appendChild(wrapper);
+
+        try {
+            await html2pdf().set({
+                margin: 0.25,
+                filename: "My-Certificate.pdf",
+                image: {
+                    type: "jpeg",
+                    quality: 0.98
+                },
+                html2canvas: {
+                    scale: 2,
+                    useCORS: true,
+                    backgroundColor: "#ffffff",
+                    windowWidth: 1100,
+                    scrollX: 0,
+                    scrollY: 0
+                },
+                jsPDF: {
+                    unit: "in",
+                    format: "a4",
+                    orientation: "landscape"
+                }
+            }).from(exportCertificate).save();
+
+        } catch (error) {
+            console.error(error);
+            alert("PDF download failed. Please try again.");
+        } finally {
+            wrapper.remove();
+        }
     });
 
     preview.scrollIntoView({
