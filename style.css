@@ -638,10 +638,11 @@ a {
     padding: 25px 12px;
   }
 
-  #certificate-preview .certificate h1 {
-    font-size: 23px;
-  }
-  /* ==============================
+#certificate-preview .certificate h1 {
+  font-size: 23px;
+}
+
+/* ==============================
    ORGANISER DASHBOARD
 ============================== */
 
