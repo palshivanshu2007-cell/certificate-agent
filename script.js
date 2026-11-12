@@ -125,7 +125,7 @@ boxShadow: "0 8px 25px rgba(0,0,0,.12)",
         try {
             await html2pdf().set({
                 margin: 0.2,
-                filename: "My-Certificate.pdf",
+                filename: "My-Certificate-Test.pdf",
                 image: {
                     type: "jpeg",
                     quality: 1
