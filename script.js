@@ -103,7 +103,10 @@ certificateForm.addEventListener("submit", function(event) {
             padding: "50px",
             boxSizing: "border-box",
             background: "#ffffff",
+            border: "7px double #c49a35",
+boxShadow: "0 8px 25px rgba(0,0,0,.12)",
             color: "#172554",
+            borderRadius: "4px",
             textAlign: "center",
             overflow: "visible"
         });
