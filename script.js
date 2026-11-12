@@ -76,12 +76,30 @@ certificateForm.addEventListener("submit", function(event) {
     preview.appendChild(downloadButton);
 
     downloadButton.addEventListener("click", async function() {
+        
         const exportCertificate = certificate.cloneNode(true);
 
+        const wrapper = document.createElement("div");
+
+        Object.assign(wrapper.style, {
+            position: "absolute",
+            left: "0",
+            top: "0",
+            width: "1100px",
+            background: "#ffffff",
+            zIndex: "99999",
+            padding: "30px"
+        });
+
         Object.assign(exportCertificate.style, {
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
             width: "1000px",
+            height: "700px",
             minHeight: "700px",
-            padding: "60px",
+            padding: "50px",
             boxSizing: "border-box",
             background: "#ffffff",
             color: "#172554",
@@ -89,15 +107,12 @@ certificateForm.addEventListener("submit", function(event) {
             overflow: "visible"
         });
 
-        const wrapper = document.createElement("div");
-
-        Object.assign(wrapper.style, {
-            position: "fixed",
-            left: "0",
-            top: "0",
-            width: "1000px",
-            background: "#ffffff",
-            zIndex: "99999"
+        Array.from(exportCertificate.children).forEach(function(element) {
+            Object.assign(element.style, {
+                display: "block",
+                visibility: "visible",
+                opacity: "1"
+            });
         });
 
         wrapper.appendChild(exportCertificate);
@@ -105,17 +120,16 @@ certificateForm.addEventListener("submit", function(event) {
 
         try {
             await html2pdf().set({
-                margin: 0.25,
+                margin: 0.2,
                 filename: "My-Certificate.pdf",
                 image: {
                     type: "jpeg",
-                    quality: 0.98
+                    quality: 1
                 },
                 html2canvas: {
                     scale: 2,
                     useCORS: true,
                     backgroundColor: "#ffffff",
-                    windowWidth: 1100,
                     scrollX: 0,
                     scrollY: 0
                 },
