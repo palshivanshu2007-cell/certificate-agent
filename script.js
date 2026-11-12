@@ -80,6 +80,7 @@ certificateForm.addEventListener("submit", function(event) {
         const exportCertificate = certificate.cloneNode(true);
 
         const wrapper = document.createElement("div");
+        wrapper.id = "certificate-preview";
 
         Object.assign(wrapper.style, {
             position: "absolute",
