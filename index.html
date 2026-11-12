@@ -2,111 +2,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Certificate Agent</title>
-    <link rel="stylesheet" href="style.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-<script src="script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HackIndia | Certificate Agent</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="script.js" defer></script>
 </head>
 <body>
 
-    <header>
-        <h2>Certificate Agent</h2>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#features">Features</a>
-            <a href="#verify">Verify</a>
-        </nav>
-    </header>
+  <header class="navbar">
+    <a href="#" class="logo">🏆 HACK<span>INDIA</span></a>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#demo">Demo</a>
+      <a href="#generate">Generate</a>
+      <a href="#verify">Verify</a>
+    </nav>
+    <a href="#generate" class="nav-button">Get Started</a>
+  </header>
 
+  <main>
+
+    <!-- 1. LANDING PAGE -->
     <section class="hero">
-        <h1>Your Achievements, Digitally Verified.</h1>
-        <p>Create beautiful certificates and verify them instantly.</p>
-        <a href="#generate" class="btn">Get Started</a>
+      <div class="hero-content">
+        <span class="eyebrow">✦ SMART CERTIFICATE PLATFORM</span>
+        <h1>Create. Celebrate.<br><span>Verify.</span></h1>
+        <p>
+          Create beautiful achievement certificates with
+          smart verification and a professional experience.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#generate" class="primary-button">Get Started Free →</a>
+          <a href="#demo" class="secondary-button">▶ Watch Demo</a>
+        </div>
+
+        <div class="hero-points">
+          <p>✓ Personalised certificates</p>
+          <p>✓ Easy certificate verification</p>
+          <p>✓ Instant PDF downloads</p>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="sample-certificate">
+          <div class="certificate-logo">🏆 HACKINDIA</div>
+          <div class="medal">🏅</div>
+          <h2>CERTIFICATE OF ACHIEVEMENT</h2>
+          <p>This certificate is proudly presented to</p>
+          <h3>Aarav Sharma</h3>
+          <div class="award-ribbon">FIRST PLACE · WINNER</div>
+          <p>For outstanding innovation and excellence</p>
+          <div class="sample-footer">
+            <span>HACKINDIA 2026<br>VERIFICATION ID: HI26-ABF291</span>
+            <span class="qr-placeholder">▦</span>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section id="features">
-        <h2>Our Features</h2>
-        <p>Create certificates and verify achievements easily.</p>
+    <!-- 2. FEATURES -->
+    <section id="features" class="features-section">
+      <div class="section-heading">
+        <span class="eyebrow">OUR FEATURES</span>
+        <h2>Everything you need to celebrate achievements</h2>
+        <p>A smarter way to create, manage and verify certificates.</p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card">
+          <div class="feature-icon">🎨</div>
+          <h3>Beautiful Certificates</h3>
+          <p>Create personalised certificates with professional designs.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Instant Generation</h3>
+          <p>Generate and download certificates in just a few clicks.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">🔐</div>
+          <h3>Secure Verification</h3>
+          <p>Check certificate authenticity using a unique ID.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Event Management</h3>
+          <p>Organise participants and certificates in one place.</p>
+        </article>
+      </div>
     </section>
 
-    
-<section id="generate">
-    <h2>Generate Your Certificate</h2>
-    <p>Enter your achievement details below.</p>
+    <!-- 3. CERTIFICATE GENERATOR -->
+    <section id="generate" class="generator-section">
+      <div class="section-heading">
+        <span class="eyebrow">CERTIFICATE STUDIO</span>
+        <h2>Create Your Certificate</h2>
+        <p>Enter your details and generate your achievement certificate.</p>
+      </div>
 
-    <form id="certificate-form">
+      <div class="generator-layout">
+        <div class="generator-form-panel">
+          <h3>Personalise Your Certificate</h3>
 
-        <input
-            type="text"
-            id="student-name"
-            placeholder="Student Name"
-            required
-        >
+          <form id="certificate-form">
+            <label for="student-name">Participant Name</label>
+            <input type="text" id="student-name"
+              placeholder="Enter participant name" required>
 
-        <input
-            type="text"
-            id="course-name"
-            placeholder="Achievement / Course Name"
-            required
-        >
+            <label for="course-name">Achievement / Course</label>
+            <input type="text" id="course-name"
+              placeholder="Enter achievement" required>
 
-        <input
-            type="text"
-            id="organization"
-            placeholder="Organization Name"
-            required
-        >
+            <label for="organization">Organisation / Event</label>
+            <input type="text" id="organization"
+              placeholder="Enter organisation name" required>
 
-        <label for="issue-date">Issue Date</label>
-        <input
-            type="date"
-            id="issue-date"
-            required
-        >
+            <label for="issue-date">Issue Date</label>
+            <input type="date" id="issue-date" required>
 
-        <button type="submit" class="btn">
-            Generate Certificate
-        </button>
+            <button type="submit" class="primary-button">
+              ✨ Generate Certificate
+            </button>
+          </form>
+        </div>
 
-    </form>
+        <div class="preview-panel" id="demo">
+          <div class="preview-heading">
+            <h3>Live Preview</h3>
+            <span class="live-label">● LIVE</span>
+          </div>
+          <div class="preview-placeholder">
+            <span>🏆</span>
+            <h3>Your Certificate Preview</h3>
+            <p>Your generated certificate will appear here.</p>
+          </div>
+          <div id="certificate-preview"></div>
+        </div>
+      </div>
+    </section>
 
-    <div id="certificate-preview"></div>
-</section>
+    <!-- 4. VERIFICATION -->
+    <section id="verify" class="verification-section">
+      <div class="section-heading">
+        <span class="eyebrow">TRUST & AUTHENTICITY</span>
+        <h2>Verify Your Certificate</h2>
+        <p>Enter your unique certificate ID to check its authenticity.</p>
+      </div>
 
+      <div class="verification-panel">
+        <div class="verification-icon">🛡️</div>
+        <h3>Certificate Verification Portal</h3>
 
-    
-<section id="verify">
-    <h2>Verify Your Certificate</h2>
+        <form id="verify-form">
+          <input type="text" id="certificate-id"
+            placeholder="Enter Certificate ID" required>
+          <button type="submit" class="primary-button">
+            Verify Certificate →
+          </button>
+        </form>
 
-    <p>
-        Enter your Certificate ID to check its authenticity.
-    </p>
+        <div id="verification-result"></div>
+      </div>
+    </section>
 
-    <form id="verify-form">
+    <!-- 5. DOWNLOAD & SHARING -->
+    <section class="sharing-section">
+      <div class="section-heading">
+        <span class="eyebrow">SHARE YOUR SUCCESS</span>
+        <h2>Your Achievement Deserves to Be Shared</h2>
+        <p>Download your certificate and share your success with the world.</p>
+      </div>
 
-        <input
-            type="text"
-            id="certificate-id"
-            placeholder="Enter Certificate ID"
-            required
-        >
+      <div class="sharing-card">
+        <div class="sharing-icon">🏆</div>
+        <div>
+          <h3>Ready to celebrate?</h3>
+          <p>Generate your certificate, download it and share it on LinkedIn.</p>
+          <a href="#generate" class="primary-button">Create Certificate →</a>
+        </div>
+      </div>
+    </section>
 
-        <button type="submit" class="btn">
-            Verify Certificate
-        </button>
+  </main>
 
-    </form>
-
-    <div id="verification-result"></div>
-
-</section>
-
-
-    <footer>
-        <p>© 2026 Certificate Agent</p>
-    </footer>
+  <footer class="footer">
+    <a href="#" class="logo">🏆 HACK<span>INDIA</span></a>
+    <p>Celebrate achievements. Build trust. Inspire excellence.</p>
+    <p>© 2026 HackIndia Certificate Agent</p>
+  </footer>
 
 </body>
 </html>
