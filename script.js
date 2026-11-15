@@ -177,40 +177,47 @@ Array.from(exportCertificate.children).forEach(function(element) {
 
     if (element.tagName === "H2") {
         Object.assign(element.style, {
-            color: "#f5c76b",
-            fontSize: "32px",
-            fontWeight: "bold",
-            letterSpacing: "2px",
-            margin: "6px 0"
-        });
+    color: "#f5c76b",
+    fontSize: "32px",
+    fontWeight: "bold",
+    letterSpacing: "3px",
+    margin: "10px 0",
+    textShadow: "0 2px 12px rgba(245,198,107,0.4)"
+});
     }
 
     if (element.tagName === "H1") {
         Object.assign(element.style, {
-            color: "#ffffff",
-            fontSize: "54px",
-            fontWeight: "bold",
-            margin: "10px 0",
-            borderBottom: "3px solid #f5a623",
-            paddingBottom: "15px"
-        });
+    color: "#fff8e7",
+    fontSize: "58px",
+    fontWeight: "bold",
+    letterSpacing: "2px",
+    margin: "14px 0",
+    borderBottom: "2px solid #f5c76b",
+    paddingBottom: "16px",
+    textShadow: "0 3px 15px rgba(245,166,35,0.3)"
+});
     }
 
     if (element.tagName === "H3") {
         Object.assign(element.style, {
-            color: "#f5a623",
-            fontSize: "30px",
-            fontWeight: "bold",
-            margin: "6px 0"
-        });
+    color: "#f5c76b",
+    fontSize: "28px",
+    fontWeight: "bold",
+    letterSpacing: "2px",
+    margin: "12px 0",
+    textShadow: "0 2px 8px rgba(245,166,35,0.25)"
+});
     }
 
     if (element.tagName === "P") {
         Object.assign(element.style, {
-    color: "#e2eee7",
+    color: "#e8e1cf",
     fontSize: "21px",
-    lineHeight: "1.3",
-    margin: "7px 0"
+    lineHeight: "1.5",
+    letterSpacing: "0.5px",
+    margin: "9px 0",
+    fontFamily: "Georgia, serif"
 });
     } 
 
@@ -265,6 +272,23 @@ Object.assign(emblem.style, {
 exportCertificate.insertBefore(
     emblem,
     exportCertificate.children[1]
+);
+        // PREMIUM DECORATIVE DIVIDER
+const divider = document.createElement("div");
+
+divider.textContent = "✦ ━━━━━━━━━━━━━ ✦";
+
+Object.assign(divider.style, {
+    color: "#f5c76b",
+    fontSize: "19px",
+    letterSpacing: "3px",
+    margin: "5px auto 12px",
+    fontFamily: "Georgia, serif"
+});
+
+exportCertificate.insertBefore(
+    divider,
+    exportCertificate.children[7]
 );
 
 
