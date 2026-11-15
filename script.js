@@ -224,6 +224,7 @@ Object.assign(footer.style, {
     marginTop: "auto",
     paddingTop: "20px",
     fontFamily: "Georgia, serif"
+    transform: "translateY(-22px)"
 });
 
 // QR CODE SECTION - LEFT
