@@ -264,7 +264,8 @@ Array.from(exportCertificate.children).forEach(function(element) {
     fontWeight: "bold",
     letterSpacing: "2px",
     margin: "14px 0",
-    borderBottom: "2px solid #f5c76b",
+    borderBottom: "3px double #f5c76b",
+boxShadow: "0 3px 12px rgba(245,166,35,0.25)",
     paddingBottom: "16px",
     textShadow: "0 3px 15px rgba(245,166,35,0.3)"
 });
