@@ -192,19 +192,38 @@ if (element.tagName === "SMALL") {
         
 // PREMIUM GOLD AWARD EMBLEM
 const emblem = document.createElement("div");
-emblem.innerHTML = "✦";
+
+emblem.innerHTML = `
+    <div style="
+        font-size: 20px;
+        color: #f5c76b;
+        letter-spacing: 5px;
+    ">❧ ✦ ❧</div>
+    <div style="
+        width: 65px;
+        height: 65px;
+        border: 3px solid #f5a623;
+        border-radius: 50%;
+        background: radial-gradient(circle, #f5c76b, #b87913);
+        color: #061b17;
+        font-size: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 4px auto;
+        box-shadow: 0 0 15px rgba(245,166,35,0.35);
+    ">★</div>
+    <div style="
+        font-size: 20px;
+        color: #f5c76b;
+        letter-spacing: 5px;
+    ">❧ ✦ ❧</div>
+`;
+
 Object.assign(emblem.style, {
-    width: "72px",
-    height: "72px",
-    border: "3px solid #f5a623",
-    borderRadius: "50%",
-    color: "#f5c76b",
-    fontSize: "42px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    margin: "0 auto 12px",
-    boxShadow: "0 0 0 5px rgba(245,166,35,0.15)"
+    textAlign: "center",
+    margin: "0 auto 8px",
+    fontFamily: "Georgia, serif"
 });
 
 exportCertificate.insertBefore(
