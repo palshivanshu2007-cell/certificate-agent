@@ -108,7 +108,43 @@ certificateForm.addEventListener("submit", function(event) {
   color: "#ffffff",
   borderRadius: "0",
   textAlign: "center",
-  overflow: "visible"
+  overflow: "visible",
+position: "relative"
+});
+
+// PREMIUM INNER GOLD FRAME
+const innerFrame = document.createElement("div");
+
+Object.assign(innerFrame.style, {
+    position: "absolute",
+    inset: "16px",
+    border: "1px solid rgba(245,198,107,0.75)",
+    pointerEvents: "none",
+    boxSizing: "border-box"
+});
+
+exportCertificate.appendChild(innerFrame);
+
+// FOUR DECORATIVE GOLD CORNERS
+[
+    { top: "12px", left: "18px" },
+    { top: "12px", right: "18px" },
+    { bottom: "12px", left: "18px" },
+    { bottom: "12px", right: "18px" }
+].forEach(function(position) {
+    const corner = document.createElement("div");
+    corner.textContent = "❧";
+
+    Object.assign(corner.style, {
+        position: "absolute",
+        ...position,
+        color: "#f5c76b",
+        fontSize: "34px",
+        lineHeight: "1",
+        pointerEvents: "none"
+    });
+
+    exportCertificate.appendChild(corner);
 });
 
         // PREMIUM CERTIFICATE TEXT DESIGN
