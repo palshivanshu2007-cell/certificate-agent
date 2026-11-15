@@ -178,14 +178,15 @@ Array.from(exportCertificate.children).forEach(function(element) {
         });
     }
 
-    if (element.tagName === "SMALL") {
-        Object.assign(element.style, {
-            color: "#d5c18e",
-            fontSize: "17px",
-            letterSpacing: "2px",
-            marginTop: "25px"
-        });
-    }
+if (element.tagName === "SMALL") {
+    Object.assign(element.style, {
+        color: "#d5c18e",
+        fontSize: "15px",
+        letterSpacing: "1.5px",
+        marginTop: "12px",
+        paddingBottom: "5px"
+    });
+}
 });
 
         wrapper.appendChild(exportCertificate);
