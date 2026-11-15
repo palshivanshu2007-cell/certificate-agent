@@ -100,7 +100,7 @@ certificateForm.addEventListener("submit", function(event) {
   width: "1000px",
   height: "700px",
   minHeight: "700px",
-  padding: "50px",
+  padding: "30px",
   boxSizing: "border-box",
   background: "linear-gradient(135deg, #061b17, #0d2922)",
   border: "8px double #f5a623",
@@ -142,19 +142,19 @@ Array.from(exportCertificate.children).forEach(function(element) {
     if (element.tagName === "H2") {
         Object.assign(element.style, {
             color: "#f5c76b",
-            fontSize: "38px",
+            fontSize: "32px",
             fontWeight: "bold",
             letterSpacing: "2px",
-            margin: "12px 0"
+            margin: "6px 0"
         });
     }
 
     if (element.tagName === "H1") {
         Object.assign(element.style, {
             color: "#ffffff",
-            fontSize: "64px",
+            fontSize: "54px",
             fontWeight: "bold",
-            margin: "18px 0",
+            margin: "10px 0",
             borderBottom: "3px solid #f5a623",
             paddingBottom: "15px"
         });
@@ -165,18 +165,18 @@ Array.from(exportCertificate.children).forEach(function(element) {
             color: "#f5a623",
             fontSize: "30px",
             fontWeight: "bold",
-            margin: "14px 0"
+            margin: "6px 0"
         });
     }
 
     if (element.tagName === "P") {
         Object.assign(element.style, {
-            color: "#e2eee7",
-            fontSize: "23px",
-            lineHeight: "1.5",
-            margin: "15px 0"
-        });
-    }
+    color: "#e2eee7",
+    fontSize: "21px",
+    lineHeight: "1.3",
+    margin: "7px 0"
+});
+    } 
 
 if (element.tagName === "SMALL") {
     Object.assign(element.style, {
