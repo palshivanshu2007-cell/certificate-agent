@@ -183,11 +183,11 @@ if (element.tagName === "SMALL") {
         color: "#d5c18e",
         fontSize: "15px",
         letterSpacing: "1.5px",
-        marginTop: "12px",
-        paddingBottom: "5px"
+        marginTop: "6px",
+        paddingBottom: "5px",
+        transform: "translateY(-12px)"
     });
 }
-});
 
         
 // PREMIUM GOLD AWARD EMBLEM
