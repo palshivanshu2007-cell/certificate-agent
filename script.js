@@ -93,23 +93,23 @@ certificateForm.addEventListener("submit", function(event) {
         });
 
         Object.assign(exportCertificate.style, {
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "1000px",
-            height: "700px",
-            minHeight: "700px",
-            padding: "50px",
-            boxSizing: "border-box",
-            background: "#ffffff",
-            border: "7px double #c49a35",
-boxShadow: "0 8px 25px rgba(0,0,0,.12)",
-            color: "#172554",
-            borderRadius: "4px",
-            textAlign: "center",
-            overflow: "visible"
-        });
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  width: "1000px",
+  height: "700px",
+  minHeight: "700px",
+  padding: "50px",
+  boxSizing: "border-box",
+  background: "linear-gradient(135deg, #061b17, #0d2922)",
+  border: "8px double #f5a623",
+  boxShadow: "0 0 0 3px #f5a623",
+  color: "#ffffff",
+  borderRadius: "0",
+  textAlign: "center",
+  overflow: "visible"
+});
 
         Array.from(exportCertificate.children).forEach(function(element) {
             Object.assign(element.style, {
