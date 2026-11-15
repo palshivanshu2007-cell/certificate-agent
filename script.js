@@ -142,11 +142,11 @@ downloadButton.addEventListener("pointercancel", function() {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  justifyContent: "center",
+justifyContent: "flex-start",
   width: "1000px",
   height: "700px",
   minHeight: "700px",
-  padding: "30px",
+  padding: "30px 30px 165px",
   boxSizing: "border-box",
   background: "linear-gradient(135deg, #061b17, #0d2922)",
   border: "8px double #f5a623",
@@ -362,14 +362,18 @@ exportCertificate.insertBefore(
 const footer = document.createElement("div");
 
 Object.assign(footer.style, {
+    position: "absolute",
+    left: "35px",
+    right: "35px",
+    bottom: "32px",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "flex-end",
-    width: "100%",
-    marginTop: "auto",
-    paddingTop: "20px",
+    width: "auto",
+    marginTop: "0",
+    paddingTop: "0",
     fontFamily: "Georgia, serif",
-    transform: "translateY(-22px)"
+    boxSizing: "border-box"
 });
 
 // QR CODE SECTION - LEFT
