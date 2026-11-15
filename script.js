@@ -345,7 +345,7 @@ emblem.innerHTML = `
         align-items: center;
         justify-content: center;
         margin: 4px auto;
-        box-shadow: 0 0 15px rgba(245,166,35,0.35);
+        box-shadow: 0 0 28px rgba(245,166,35,0.65), 0 0 55px rgba(245,166,35,0.25);
     ">★</div>
     <div style="
         font-size: 20px;
