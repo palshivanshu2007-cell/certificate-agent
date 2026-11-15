@@ -866,3 +866,67 @@ a {
   }
 }
 
+/* =====================================
+   HACKINDIA PREMIUM CERTIFICATE DESIGN
+===================================== */
+
+#certificate-preview .certificate {
+  position: relative;
+  overflow: hidden;
+  min-height: 430px;
+  padding: 45px 30px;
+  background:
+    radial-gradient(circle at 50% 50%, #174b37, transparent 75%),
+    linear-gradient(135deg, #061b17, #0d2922) !important;
+  border: 8px double #f5a623 !important;
+  outline: 2px solid #f5a623;
+  outline-offset: -16px;
+  color: #ffffff !important;
+  box-shadow: 0 15px 40px rgba(0,0,0,.3) !important;
+  font-family: Georgia, serif;
+}
+
+#certificate-preview .certificate::before {
+  content: "✦ HACKINDIA ✦";
+  display: block;
+  color: #f5a623;
+  font-size: 19px;
+  font-weight: bold;
+  letter-spacing: 5px;
+  margin-bottom: 28px;
+}
+
+#certificate-preview .certificate h2 {
+  color: #f5c76b !important;
+  font-size: 25px;
+  letter-spacing: 2px;
+  margin-bottom: 22px;
+}
+
+#certificate-preview .certificate p {
+  color: #e2eee7 !important;
+  font-size: 15px;
+  margin: 16px 0;
+}
+
+#certificate-preview .certificate h1 {
+  color: #ffffff !important;
+  font-family: Georgia, serif;
+  font-size: 42px;
+  margin: 25px 0;
+  border-bottom: 2px solid #f5a623;
+  padding-bottom: 12px;
+  display: inline-block;
+}
+
+#certificate-preview .certificate h3 {
+  color: #f5a623 !important;
+  font-size: 21px;
+  margin: 22px 0;
+}
+
+#certificate-preview .certificate small {
+  color: #d5c18e !important;
+  letter-spacing: 1px;
+  margin-top: 25px;
+}
