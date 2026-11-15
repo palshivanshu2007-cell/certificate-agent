@@ -253,7 +253,7 @@ Array.from(exportCertificate.children).forEach(function(element) {
     fontWeight: "bold",
     letterSpacing: "3px",
     margin: "10px 0",
-    textShadow: "0 2px 12px rgba(245,198,107,0.4)"
+    textShadow: "0 0 8px rgba(245,198,107,0.65), 0 0 22px rgba(245,166,35,0.4), 0 2px 12px rgba(245,198,107,0.3)"
 });
     }
 
