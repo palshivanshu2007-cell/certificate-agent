@@ -399,7 +399,10 @@ Object.assign(titleDivider.style, {
     lineHeight: "1"
 });
 
-exportCertificate.insertBefore(titleDivider, subtitle);
+exportCertificate.insertBefore(
+    titleDivider,
+    exportCertificate.querySelectorAll("p")[0]
+);
         
         // PREMIUM DECORATIVE DIVIDER
 const divider = document.createElement("div");
