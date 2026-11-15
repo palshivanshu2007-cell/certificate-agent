@@ -122,7 +122,7 @@ Object.assign(brand.style, {
     fontWeight: "bold",
     letterSpacing: "4px",
     fontFamily: "Georgia, serif",
-    marginBottom: "35px"
+    marginBottom: "12px"
 });
 
 exportCertificate.insertBefore(
@@ -145,7 +145,7 @@ Array.from(exportCertificate.children).forEach(function(element) {
             fontSize: "38px",
             fontWeight: "bold",
             letterSpacing: "2px",
-            margin: "20px 0"
+            margin: "12px 0"
         });
     }
 
@@ -154,7 +154,7 @@ Array.from(exportCertificate.children).forEach(function(element) {
             color: "#ffffff",
             fontSize: "64px",
             fontWeight: "bold",
-            margin: "30px 0",
+            margin: "18px 0",
             borderBottom: "3px solid #f5a623",
             paddingBottom: "15px"
         });
@@ -165,7 +165,7 @@ Array.from(exportCertificate.children).forEach(function(element) {
             color: "#f5a623",
             fontSize: "30px",
             fontWeight: "bold",
-            margin: "25px 0"
+            margin: "14px 0"
         });
     }
 
@@ -189,6 +189,29 @@ if (element.tagName === "SMALL") {
 }
 });
 
+        
+// PREMIUM GOLD AWARD EMBLEM
+const emblem = document.createElement("div");
+emblem.innerHTML = "✦";
+Object.assign(emblem.style, {
+    width: "72px",
+    height: "72px",
+    border: "3px solid #f5a623",
+    borderRadius: "50%",
+    color: "#f5c76b",
+    fontSize: "42px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    margin: "0 auto 12px",
+    boxShadow: "0 0 0 5px rgba(245,166,35,0.15)"
+});
+
+exportCertificate.insertBefore(
+    emblem,
+    exportCertificate.children[1]
+);
+        
         wrapper.appendChild(exportCertificate);
         document.body.appendChild(wrapper);
 
