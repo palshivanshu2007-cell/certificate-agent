@@ -223,7 +223,7 @@ Object.assign(footer.style, {
     width: "100%",
     marginTop: "auto",
     paddingTop: "20px",
-    fontFamily: "Georgia, serif"
+    fontFamily: "Georgia, serif",
     transform: "translateY(-22px)"
 });
 
