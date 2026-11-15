@@ -70,9 +70,55 @@ certificateForm.addEventListener("submit", function(event) {
     preview.replaceChildren(certificate);
 
     const downloadButton = document.createElement("button");
-    downloadButton.textContent = "Download Certificate";
-    downloadButton.className = "btn";
+    downloadButton.innerHTML = `
+    <span style="font-size:20px;">⬇</span>
+    <span>Download Certificate</span>
+`;
 
+Object.assign(downloadButton.style, {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "12px",
+    margin: "25px auto",
+    padding: "15px 32px",
+    background: "linear-gradient(135deg, #f5c76b, #d49a32)",
+    color: "#061b17",
+    border: "1px solid #f5c76b",
+    borderRadius: "8px",
+    fontSize: "17px",
+    fontWeight: "bold",
+    letterSpacing: "0.5px",
+    fontFamily: "Georgia, serif",
+    boxShadow: "0 5px 18px rgba(0,0,0,0.25)",
+    cursor: "pointer"
+});
+    downloadButton.style.transition =
+    "all 0.3s ease";
+
+downloadButton.addEventListener("mouseenter", function() {
+    downloadButton.style.transform = "translateY(-3px)";
+    downloadButton.style.boxShadow =
+        "0 9px 24px rgba(245,166,35,0.35)";
+});
+
+downloadButton.addEventListener("mouseleave", function() {
+    downloadButton.style.transform = "translateY(0)";
+    downloadButton.style.boxShadow =
+        "0 5px 18px rgba(0,0,0,0.25)";
+});
+    // BUTTON PRESS ANIMATION
+downloadButton.addEventListener("pointerdown", function() {
+    downloadButton.style.transform = "scale(0.97)";
+});
+
+downloadButton.addEventListener("pointerup", function() {
+    downloadButton.style.transform = "translateY(-3px)";
+});
+
+downloadButton.addEventListener("pointercancel", function() {
+    downloadButton.style.transform = "translateY(0)";
+});
     preview.appendChild(downloadButton);
 
     downloadButton.addEventListener("click", async function() {
@@ -232,6 +278,26 @@ if (element.tagName === "SMALL") {
     });
 }
 });
+
+        // PREMIUM ISSUE DATE
+Object.assign(date.style, {
+    color: "#f5c76b",
+    fontSize: "17px",
+    letterSpacing: "1px",
+    marginTop: "16px",
+    fontFamily: "Georgia, serif"
+});
+
+// PREMIUM CERTIFICATE ID
+Object.assign(id.style, {
+    color: "#e8d6a8",
+    fontSize: "14px",
+    letterSpacing: "1.5px",
+    border: "1px solid rgba(245,198,107,0.5)",
+    padding: "7px 16px",
+    marginTop: "8px",
+    display: "inline-block"
+});
         
 // PREMIUM GOLD AWARD EMBLEM
 const emblem = document.createElement("div");
@@ -360,7 +426,12 @@ signature.innerHTML = `
 
 Object.assign(signature.style, {
     textAlign: "center",
-    marginBottom: "8px"
+    marginBottom: "8px",
+    padding: "12px 18px",
+    border: "1px solid rgba(245,198,107,0.45)",
+    borderRadius: "4px",
+    background: "rgba(245,198,107,0.04)",
+    minWidth: "240px"
 });
 
 footer.append(qrSection, signature);
