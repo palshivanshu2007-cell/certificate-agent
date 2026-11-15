@@ -188,7 +188,7 @@ if (element.tagName === "SMALL") {
         transform: "translateY(-12px)"
     });
 }
-
+});
         
 // PREMIUM GOLD AWARD EMBLEM
 const emblem = document.createElement("div");
