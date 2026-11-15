@@ -212,20 +212,64 @@ exportCertificate.insertBefore(
     exportCertificate.children[1]
 );
 
-        // PREMIUM AUTHORISED SIGNATURE
+
+// PREMIUM CERTIFICATE FOOTER
+const footer = document.createElement("div");
+
+Object.assign(footer.style, {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "flex-end",
+    width: "100%",
+    marginTop: "auto",
+    paddingTop: "20px",
+    fontFamily: "Georgia, serif"
+});
+
+// QR CODE SECTION - LEFT
+const qrSection = document.createElement("div");
+
+Object.assign(qrSection.style, {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: "6px"
+});
+
+const qrBox = document.createElement("div");
+
+Object.assign(qrBox.style, {
+    width: "96px",
+    height: "96px",
+    background: "#ffffff",
+    padding: "5px",
+    boxSizing: "border-box"
+});
+
+const qrLabel = document.createElement("div");
+qrLabel.textContent = "CERTIFICATE ID";
+
+Object.assign(qrLabel.style, {
+    color: "#f5c76b",
+    fontSize: "12px",
+    letterSpacing: "1px"
+});
+
+qrSection.append(qrBox, qrLabel);
+
+// AUTHORISED SIGNATURE - RIGHT
 const signature = document.createElement("div");
 
 signature.innerHTML = `
     <div style="
         width: 220px;
         border-top: 2px solid #f5a623;
-        margin: 0 auto 8px;
+        margin-bottom: 8px;
     "></div>
     <div style="
         color: #f5c76b;
         font-size: 19px;
         font-weight: bold;
-        letter-spacing: 1px;
     ">Authorised Signatory</div>
     <div style="
         color: #d5c18e;
@@ -236,11 +280,22 @@ signature.innerHTML = `
 
 Object.assign(signature.style, {
     textAlign: "center",
-    marginTop: "18px",
-    fontFamily: "Georgia, serif"
+    marginBottom: "8px"
 });
 
-exportCertificate.appendChild(signature);
+footer.append(qrSection, signature);
+exportCertificate.appendChild(footer);
+
+// GENERATE QR CODE
+new QRCode(qrBox, {
+    text: certificateID,
+    width: 86,
+    height: 86,
+    colorDark: "#061b17",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.H
+});
+
         
         wrapper.appendChild(exportCertificate);
         document.body.appendChild(wrapper);
