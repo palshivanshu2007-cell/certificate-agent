@@ -211,6 +211,36 @@ exportCertificate.insertBefore(
     emblem,
     exportCertificate.children[1]
 );
+
+        // PREMIUM AUTHORISED SIGNATURE
+const signature = document.createElement("div");
+
+signature.innerHTML = `
+    <div style="
+        width: 220px;
+        border-top: 2px solid #f5a623;
+        margin: 0 auto 8px;
+    "></div>
+    <div style="
+        color: #f5c76b;
+        font-size: 19px;
+        font-weight: bold;
+        letter-spacing: 1px;
+    ">Authorised Signatory</div>
+    <div style="
+        color: #d5c18e;
+        font-size: 13px;
+        margin-top: 4px;
+    ">HACKINDIA 2026</div>
+`;
+
+Object.assign(signature.style, {
+    textAlign: "center",
+    marginTop: "18px",
+    fontFamily: "Georgia, serif"
+});
+
+exportCertificate.appendChild(signature);
         
         wrapper.appendChild(exportCertificate);
         document.body.appendChild(wrapper);
