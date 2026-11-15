@@ -212,6 +212,30 @@ exportCertificate.insertBefore(
     exportCertificate.firstChild
 );
 
+        // PREMIUM GOLD AWARD RIBBON
+const ribbon = document.createElement("div");
+
+ribbon.textContent = "✦  CERTIFIED EXCELLENCE  ✦";
+
+Object.assign(ribbon.style, {
+    display: "inline-block",
+    color: "#061b17",
+    background: "linear-gradient(135deg, #f5c76b, #d49a32)",
+    fontSize: "15px",
+    fontWeight: "bold",
+    letterSpacing: "3px",
+    padding: "10px 28px",
+    margin: "8px auto 14px",
+    border: "1px solid #fff0bd",
+    boxShadow: "0 3px 12px rgba(245,166,35,0.3)",
+    fontFamily: "Georgia, serif"
+});
+
+exportCertificate.insertBefore(
+    ribbon,
+    exportCertificate.children[2]
+);
+        
 Array.from(exportCertificate.children).forEach(function(element) {
     Object.assign(element.style, {
         display: "block",
