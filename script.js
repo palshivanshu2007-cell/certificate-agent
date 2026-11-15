@@ -111,13 +111,82 @@ certificateForm.addEventListener("submit", function(event) {
   overflow: "visible"
 });
 
-        Array.from(exportCertificate.children).forEach(function(element) {
-            Object.assign(element.style, {
-                display: "block",
-                visibility: "visible",
-                opacity: "1"
-            });
+        // PREMIUM CERTIFICATE TEXT DESIGN
+
+const brand = document.createElement("div");
+brand.textContent = "✦  H A C K I N D I A  ✦";
+
+Object.assign(brand.style, {
+    color: "#f5a623",
+    fontSize: "30px",
+    fontWeight: "bold",
+    letterSpacing: "4px",
+    fontFamily: "Georgia, serif",
+    marginBottom: "35px"
+});
+
+exportCertificate.insertBefore(
+    brand,
+    exportCertificate.firstChild
+);
+
+Array.from(exportCertificate.children).forEach(function(element) {
+    Object.assign(element.style, {
+        display: "block",
+        visibility: "visible",
+        opacity: "1",
+        fontFamily: "Georgia, serif",
+        textAlign: "center"
+    });
+
+    if (element.tagName === "H2") {
+        Object.assign(element.style, {
+            color: "#f5c76b",
+            fontSize: "38px",
+            fontWeight: "bold",
+            letterSpacing: "2px",
+            margin: "20px 0"
         });
+    }
+
+    if (element.tagName === "H1") {
+        Object.assign(element.style, {
+            color: "#ffffff",
+            fontSize: "64px",
+            fontWeight: "bold",
+            margin: "30px 0",
+            borderBottom: "3px solid #f5a623",
+            paddingBottom: "15px"
+        });
+    }
+
+    if (element.tagName === "H3") {
+        Object.assign(element.style, {
+            color: "#f5a623",
+            fontSize: "30px",
+            fontWeight: "bold",
+            margin: "25px 0"
+        });
+    }
+
+    if (element.tagName === "P") {
+        Object.assign(element.style, {
+            color: "#e2eee7",
+            fontSize: "23px",
+            lineHeight: "1.5",
+            margin: "15px 0"
+        });
+    }
+
+    if (element.tagName === "SMALL") {
+        Object.assign(element.style, {
+            color: "#d5c18e",
+            fontSize: "17px",
+            letterSpacing: "2px",
+            marginTop: "25px"
+        });
+    }
+});
 
         wrapper.appendChild(exportCertificate);
         document.body.appendChild(wrapper);
