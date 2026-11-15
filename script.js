@@ -383,6 +383,23 @@ exportCertificate.insertBefore(
     emblem,
     exportCertificate.children[1]
 );
+
+        // PREMIUM TITLE ORNAMENT
+const titleDivider = document.createElement("div");
+titleDivider.textContent = "❧  ✦  ❧";
+
+Object.assign(titleDivider.style, {
+    color: "#f5c76b",
+    fontSize: "24px",
+    letterSpacing: "8px",
+    margin: "0 auto 10px",
+    textShadow: "0 0 12px rgba(245,166,35,0.35)",
+    fontFamily: "Georgia, serif",
+    lineHeight: "1"
+});
+
+exportCertificate.insertBefore(titleDivider, subtitle);
+        
         // PREMIUM DECORATIVE DIVIDER
 const divider = document.createElement("div");
 
