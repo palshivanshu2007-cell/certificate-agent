@@ -226,7 +226,8 @@ Object.assign(ribbon.style, {
     letterSpacing: "3px",
     padding: "10px 28px",
     margin: "8px auto 14px",
-    border: "1px solid #fff0bd",
+    clipPath: "polygon(0 0, 100% 0, 94% 50%, 100% 100%, 0 100%, 6% 50%)",
+border: "1px solid #fff0bd",
     boxShadow: "0 3px 12px rgba(245,166,35,0.3)",
     fontFamily: "Georgia, serif"
 });
