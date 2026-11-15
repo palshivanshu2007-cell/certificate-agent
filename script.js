@@ -325,7 +325,8 @@ Object.assign(id.style, {
 });
         
 // PREMIUM GOLD AWARD EMBLEM
-const emblem = document.createElement("div");
+// PREMIUM LAUREL DECORATION
+        const emblem = document.createElement("div");
 
 emblem.innerHTML = `
     <div style="
@@ -357,8 +358,26 @@ emblem.innerHTML = `
 Object.assign(emblem.style, {
     textAlign: "center",
     margin: "0 auto 8px",
-    fontFamily: "Georgia, serif"
+    fontFamily: "Georgia, serif",
+    position: "relative",
+    width: "220px"
 });
+
+// GOLDEN LAUREL WREATH
+const laurel = document.createElement("div");
+
+laurel.textContent = "❧                         ❧";
+
+Object.assign(laurel.style, {
+    color: "#f5c76b",
+    fontSize: "62px",
+    letterSpacing: "12px",
+    textAlign: "center",
+    margin: "-4px auto 0",
+    textShadow: "0 0 14px rgba(245,166,35,0.4)"
+});
+
+emblem.appendChild(laurel);
 
 exportCertificate.insertBefore(
     emblem,
