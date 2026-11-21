@@ -135,452 +135,221 @@ downloadButton.addEventListener("pointercancel", function() {
 });
     preview.appendChild(downloadButton);
 
-    downloadButton.addEventListener("click", async function() {
-        
-        const exportCertificate = certificate.cloneNode(true);
+    
+downloadButton.addEventListener("click", async function() {
 
-        const wrapper = document.createElement("div");
-        wrapper.id = "certificate-preview";
+    const exportCertificate = document.createElement("div");
 
-        Object.assign(wrapper.style, {
-            position: "absolute",
-            left: "0",
-            top: "0",
-            width: "1100px",
-            background: "#ffffff",
-            zIndex: "99999",
-            padding: "30px"
+    Object.assign(exportCertificate.style, {
+        position: "relative",
+        width: "1122px",
+        height: "794px",
+        boxSizing: "border-box",
+        overflow: "hidden",
+        padding: "65px 70px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        textAlign: "center",
+        color: "#f8edcf",
+        background: "radial-gradient(ellipse at center, #252019, #11100e 60%, #050505)",
+        border: "9px double #c9a34a",
+        fontFamily: "Georgia, serif"
+    });
+
+    const makeText = (tag, value, styles = {}) => {
+        const element = document.createElement(tag);
+        element.textContent = value;
+        Object.assign(element.style, styles);
+        return element;
+    };
+
+    const brand = makeText("div", "H A C K I N D I A", {
+        color: "#e5c77f",
+        fontSize: "27px",
+        fontWeight: "bold",
+        letterSpacing: "8px",
+        marginBottom: "28px"
+    });
+
+    const emblem = makeText("div", "★", {
+        width: "64px",
+        height: "64px",
+        lineHeight: "64px",
+        borderRadius: "50%",
+        background: "linear-gradient(135deg, #f5df9d, #bd9140)",
+        color: "#17120a",
+        fontSize: "38px",
+        marginBottom: "20px",
+        boxShadow: "0 0 22px rgba(201,163,74,.4)"
+    });
+
+    const heading = makeText("div", "CERTIFICATE OF ACHIEVEMENT", {
+        color: "#e5c77f",
+        fontSize: "34px",
+        fontWeight: "bold",
+        letterSpacing: "3px",
+        marginBottom: "20px"
+    });
+
+    const subtitle = makeText("div",
+        "This certificate is proudly presented to", {
+        color: "#ded3b8",
+        fontSize: "22px",
+        marginBottom: "14px"
+    });
+
+    const name = makeText("div", studentName, {
+        color: "#fff1c9",
+        fontSize: "48px",
+        fontWeight: "bold",
+        marginBottom: "12px",
+        borderBottom: "2px solid #c9a34a",
+        padding: "0 35px 12px"
+    });
+
+    const achievement = makeText("div",
+        "For successfully completing " + courseName, {
+        color: "#ded3b8",
+        fontSize: "21px",
+        marginTop: "12px"
+    });
+
+    const tier = makeText("div",
+        "★ " + achievementTier + " ★", {
+        color: "#17120a",
+        background: "linear-gradient(120deg, #a77b2d, #f5df9d, #bd9140)",
+        border: "1px solid #ffe8a8",
+        padding: "12px 32px",
+        fontSize: "20px",
+        fontWeight: "bold",
+        letterSpacing: "3px",
+        marginTop: "22px"
+    });
+
+    const organisation = makeText("div", organization, {
+        color: "#e5c77f",
+        fontSize: "25px",
+        fontWeight: "bold",
+        marginTop: "18px"
+    });
+
+    const dateText = makeText("div",
+        "Issue Date: " + formattedDate, {
+        color: "#ded3b8",
+        fontSize: "18px",
+        marginTop: "18px"
+    });
+
+    const footer = document.createElement("div");
+
+    Object.assign(footer.style, {
+        position: "absolute",
+        left: "55px",
+        right: "55px",
+        bottom: "35px",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "flex-end"
+    });
+
+    const qrSection = document.createElement("div");
+    const qrBox = document.createElement("div");
+
+    Object.assign(qrBox.style, {
+        width: "90px",
+        height: "90px",
+        background: "#ffffff",
+        padding: "4px",
+        boxSizing: "border-box"
+    });
+
+    const qrLabel = makeText("div", certificateID, {
+        color: "#e5c77f",
+        fontSize: "12px",
+        marginTop: "7px"
+    });
+
+    qrSection.append(qrBox, qrLabel);
+
+    const signature = makeText("div",
+        "AUTHORISED SIGNATORY\nHACKINDIA 2026", {
+        whiteSpace: "pre-line",
+        color: "#e5c77f",
+        fontSize: "17px",
+        lineHeight: "2",
+        border: "1px solid #c9a34a",
+        padding: "12px 25px"
+    });
+
+    footer.append(qrSection, signature);
+
+    exportCertificate.append(
+        brand,
+        emblem,
+        heading,
+        subtitle,
+        name,
+        achievement,
+        tier,
+        organisation,
+        dateText,
+        footer
+    );
+
+    const wrapper = document.createElement("div");
+
+    Object.assign(wrapper.style, {
+        position: "fixed",
+        left: "0",
+        top: "0",
+        width: "1122px",
+        background: "#050505",
+        zIndex: "99999"
+    });
+
+    wrapper.appendChild(exportCertificate);
+    document.body.appendChild(wrapper);
+
+    try {
+
+        new QRCode(qrBox, {
+            text: certificateID,
+            width: 82,
+            height: 82,
+            colorDark: "#11100e",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
         });
 
+        await html2pdf().set({
+            margin: 0,
+            filename: "HackIndia-Luxury-Certificate.pdf",
+            image: {
+                type: "jpeg",
+                quality: 1
+            },
+            html2canvas: {
+                scale: 2,
+                useCORS: true,
+                backgroundColor: "#050505"
+            },
+            jsPDF: {
+                unit: "mm",
+                format: "a4",
+                orientation: "landscape"
+            }
+        }).from(exportCertificate).save();
 
-// PREMIUM LUXURY CERTIFICATE FOUNDATION
-
-Object.assign(exportCertificate.style, {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "flex-start",
-    position: "relative",
-    width: "1000px",
-    height: "700px",
-    minHeight: "700px",
-    padding: "30px 30px 165px",
-    boxSizing: "border-box",
-
-    background: `
-        radial-gradient(
-            ellipse at center,
-            #252019 0%,
-            #11100e 55%,
-            #050505 100%
-        )
-    `,
-
-    border: "7px double #c9a34a",
-    outline: "1px solid #f2d58a",
-    outlineOffset: "-13px",
-
-    boxShadow: `
-        0 0 20px rgba(201,163,74,.25),
-        0 0 45px rgba(0,0,0,.5)
-    `,
-
-    color: "#f8edcf",
-    borderRadius: "0",
-    textAlign: "center",
-    overflow: "hidden"
-});
-        
-const innerFrame = document.createElement("div");
-
-Object.assign(innerFrame.style, {
-    position: "absolute",
-    inset: "16px",
-    border: "1px solid rgba(245,198,107,0.75)",
-    pointerEvents: "none",
-    boxSizing: "border-box"
-});
-
-exportCertificate.appendChild(innerFrame);
-
-// FOUR DECORATIVE GOLD CORNERS
-[
-    { top: "12px", left: "18px" },
-    { top: "12px", right: "18px" },
-    { bottom: "12px", left: "18px" },
-    { bottom: "12px", right: "18px" }
-].forEach(function(position) {
-    const corner = document.createElement("div");
-    corner.textContent = "❧";
-
-    Object.assign(corner.style, {
-        position: "absolute",
-        ...position,
-        color: "#f5c76b",
-        fontSize: "34px",
-        lineHeight: "1",
-        pointerEvents: "none"
-    });
-
-    exportCertificate.appendChild(corner);
-});
-
-        // PREMIUM CERTIFICATE TEXT DESIGN
-
-const brand = document.createElement("div");
-brand.textContent = "✦  H A C K I N D I A  ✦";
-
-Object.assign(brand.style, {
-    color: "#f5a623",
-    fontSize: "30px",
-    fontWeight: "bold",
-    letterSpacing: "4px",
-    fontFamily: "Georgia, serif",
-    marginBottom: "12px"
-});
-
-exportCertificate.insertBefore(
-    brand,
-    exportCertificate.firstChild
-);
-
-        // PREMIUM GOLD AWARD RIBBON
-const ribbon = document.createElement("div");
-
-ribbon.textContent = "✦  CERTIFIED EXCELLENCE  ✦";
-
-Object.assign(ribbon.style, {
-    display: "inline-block",
-    color: "#061b17",
-    background: "linear-gradient(135deg, #f5c76b, #d49a32)",
-    fontSize: "15px",
-    fontWeight: "bold",
-    letterSpacing: "3px",
-    padding: "10px 28px",
-    margin: "8px auto 14px",
-    clipPath: "polygon(0 0, 100% 0, 94% 50%, 100% 100%, 0 100%, 6% 50%)",
-border: "1px solid #fff0bd",
-    boxShadow: "0 3px 12px rgba(245,166,35,0.3)",
-    fontFamily: "Georgia, serif"
-});
-
-exportCertificate.insertBefore(
-    ribbon,
-    exportCertificate.children[2]
-);
-        
-Array.from(exportCertificate.children).forEach(function(element) {
-    Object.assign(element.style, {
-        display: "block",
-        visibility: "visible",
-        opacity: "1",
-        fontFamily: "Georgia, serif",
-        textAlign: "center"
-    });
-
-    if (element.tagName === "H2") {
-        Object.assign(element.style, {
-    color: "#f5c76b",
-    fontSize: "32px",
-    fontWeight: "bold",
-    letterSpacing: "3px",
-    margin: "10px 0",
-    textShadow: "0 0 8px rgba(245,198,107,0.65), 0 0 22px rgba(245,166,35,0.4), 0 2px 12px rgba(245,198,107,0.3)"
-});
+    } catch (error) {
+        console.error(error);
+        alert("PDF download failed. Please try again.");
+    } finally {
+        wrapper.remove();
     }
 
-    if (element.tagName === "H1") {
-        Object.assign(element.style, {
-    color: "#fff8e7",
-    fontSize: "58px",
-    fontWeight: "bold",
-    letterSpacing: "2px",
-    margin: "14px 0",
-    borderBottom: "3px double #f5c76b",
-boxShadow: "0 3px 12px rgba(245,166,35,0.25)",
-    paddingBottom: "16px",
-    textShadow: "0 3px 15px rgba(245,166,35,0.3)"
 });
-    }
-
-    if (element.tagName === "H3") {
-        Object.assign(element.style, {
-    color: "#f5c76b",
-    fontSize: "28px",
-    fontWeight: "bold",
-    letterSpacing: "2px",
-    margin: "12px 0",
-    textShadow: "0 2px 8px rgba(245,166,35,0.25)"
-});
-    }
-
-    if (element.tagName === "P") {
-        Object.assign(element.style, {
-    color: "#e8e1cf",
-    fontSize: "21px",
-    lineHeight: "1.5",
-    letterSpacing: "0.5px",
-    margin: "9px 0",
-    fontFamily: "Georgia, serif"
-});
-    } 
-
-if (element.tagName === "SMALL") {
-    Object.assign(element.style, {
-        color: "#d5c18e",
-        fontSize: "15px",
-        letterSpacing: "1.5px",
-        marginTop: "6px",
-        paddingBottom: "5px",
-        transform: "translateY(-12px)"
-    });
-}
-});
-
-        // PREMIUM ISSUE DATE
-Object.assign(date.style, {
-    color: "#f5c76b",
-    fontSize: "17px",
-    letterSpacing: "1px",
-    marginTop: "16px",
-    fontFamily: "Georgia, serif"
-});
-
-// PREMIUM CERTIFICATE ID
-Object.assign(id.style, {
-    color: "#e8d6a8",
-    fontSize: "14px",
-    letterSpacing: "1.5px",
-    border: "1px solid rgba(245,198,107,0.5)",
-    padding: "7px 16px",
-    marginTop: "8px",
-    display: "inline-block"
-});
-        
-// PREMIUM GOLD AWARD EMBLEM
-// PREMIUM LAUREL DECORATION
-        const emblem = document.createElement("div");
-
-emblem.innerHTML = `
-    <div style="
-        font-size: 20px;
-        color: #f5c76b;
-        letter-spacing: 5px;
-    ">❧ ✦ ❧</div>
-    <div style="
-        width: 65px;
-        height: 65px;
-        border: 3px solid #f5a623;
-        border-radius: 50%;
-        background: radial-gradient(circle, #f5c76b, #b87913);
-        color: #061b17;
-        font-size: 38px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 4px auto;
-        box-shadow: 0 0 28px rgba(245,166,35,0.65), 0 0 55px rgba(245,166,35,0.25);
-    ">★</div>
-    <div style="
-        font-size: 20px;
-        color: #f5c76b;
-        letter-spacing: 5px;
-    ">❧ ✦ ❧</div>
-`;
-
-Object.assign(emblem.style, {
-    textAlign: "center",
-    margin: "0 auto 8px",
-    fontFamily: "Georgia, serif",
-    position: "relative",
-    width: "220px"
-});
-
-// GOLDEN LAUREL WREATH
-const laurel = document.createElement("div");
-
-laurel.textContent = "❧                         ❧";
-
-Object.assign(laurel.style, {
-    color: "#f5c76b",
-    fontSize: "62px",
-    letterSpacing: "12px",
-    textAlign: "center",
-    margin: "-4px auto 0",
-    textShadow: "0 0 14px rgba(245,166,35,0.4)"
-});
-
-emblem.appendChild(laurel);
-
-exportCertificate.insertBefore(
-    emblem,
-    exportCertificate.children[1]
-);
-
-        // PREMIUM TITLE ORNAMENT
-const titleDivider = document.createElement("div");
-titleDivider.textContent = "❧  ✦  ❧";
-
-Object.assign(titleDivider.style, {
-    color: "#f5c76b",
-    fontSize: "24px",
-    letterSpacing: "8px",
-    margin: "0 auto 10px",
-    textShadow: "0 0 12px rgba(245,166,35,0.35)",
-    fontFamily: "Georgia, serif",
-    lineHeight: "1"
-});
-
-exportCertificate.insertBefore(
-    titleDivider,
-    exportCertificate.querySelectorAll("p")[0]
-);
-        
-        // PREMIUM DECORATIVE DIVIDER
-const divider = document.createElement("div");
-
-divider.textContent = "✦ ━━━━━━━━━━━━━ ✦";
-
-Object.assign(divider.style, {
-    color: "#f5c76b",
-    fontSize: "19px",
-    letterSpacing: "3px",
-    margin: "5px auto 12px",
-    fontFamily: "Georgia, serif"
-});
-
-exportCertificate.insertBefore(
-    divider,
-    exportCertificate.children[7]
-);
-
-
-// PREMIUM CERTIFICATE FOOTER
-const footer = document.createElement("div");
-
-Object.assign(footer.style, {
-    position: "absolute",
-    left: "35px",
-    right: "35px",
-    bottom: "32px",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "flex-end",
-    width: "auto",
-    marginTop: "0",
-    paddingTop: "0",
-    fontFamily: "Georgia, serif",
-    boxSizing: "border-box"
-});
-
-// QR CODE SECTION - LEFT
-const qrSection = document.createElement("div");
-
-Object.assign(qrSection.style, {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    gap: "6px"
-});
-
-const qrBox = document.createElement("div");
-
-Object.assign(qrBox.style, {
-    width: "96px",
-    height: "96px",
-    background: "#ffffff",
-    padding: "5px",
-    boxSizing: "border-box"
-});
-
-const qrLabel = document.createElement("div");
-qrLabel.textContent = "CERTIFICATE ID";
-
-Object.assign(qrLabel.style, {
-    color: "#f5c76b",
-    fontSize: "12px",
-    letterSpacing: "1px"
-});
-
-qrSection.append(qrBox, qrLabel);
-
-// AUTHORISED SIGNATURE - RIGHT
-const signature = document.createElement("div");
-
-signature.innerHTML = `
-    <div style="
-        width: 220px;
-        border-top: 2px solid #f5a623;
-        margin-bottom: 8px;
-    "></div>
-    <div style="
-        color: #f5c76b;
-        font-size: 19px;
-        font-weight: bold;
-    ">Authorised Signatory</div>
-    <div style="
-        color: #d5c18e;
-        font-size: 13px;
-        margin-top: 4px;
-    ">HACKINDIA 2026</div>
-`;
-
-Object.assign(signature.style, {
-    textAlign: "center",
-    marginBottom: "8px",
-    padding: "12px 18px",
-    border: "1px solid rgba(245,198,107,0.45)",
-    borderRadius: "4px",
-    background: "rgba(245,198,107,0.04)",
-    minWidth: "240px"
-});
-
-footer.append(qrSection, signature);
-exportCertificate.appendChild(footer);
-
-// GENERATE QR CODE
-new QRCode(qrBox, {
-    text: certificateID,
-    width: 86,
-    height: 86,
-    colorDark: "#061b17",
-    colorLight: "#ffffff",
-    correctLevel: QRCode.CorrectLevel.H
-});
-
-        
-        wrapper.appendChild(exportCertificate);
-        document.body.appendChild(wrapper);
-
-        try {
-            await html2pdf().set({
-                margin: 0.2,
-                filename: "My-Certificate-Test.pdf",
-                image: {
-                    type: "jpeg",
-                    quality: 1
-                },
-                html2canvas: {
-                    scale: 2,
-                    useCORS: true,
-                    backgroundColor: "#ffffff",
-                    scrollX: 0,
-                    scrollY: 0
-                },
-                jsPDF: {
-                    unit: "in",
-                    format: "a4",
-                    orientation: "landscape"
-                }
-            }).from(exportCertificate).save();
-
-        } catch (error) {
-            console.error(error);
-            alert("PDF download failed. Please try again.");
-        } finally {
-            wrapper.remove();
-        }
-    });
+    
 
     preview.scrollIntoView({
         behavior: "smooth",
