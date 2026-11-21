@@ -152,7 +152,8 @@ downloadButton.addEventListener("pointercancel", function() {
             padding: "30px"
         });
 
-        // PREMIUM INNER GOLD FRAME
+
+// PREMIUM LUXURY CERTIFICATE FOUNDATION
 
 Object.assign(exportCertificate.style, {
     display: "flex",
@@ -189,64 +190,7 @@ Object.assign(exportCertificate.style, {
     textAlign: "center",
     overflow: "hidden"
 });
-
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-justifyContent: "flex-start",
-  width: "1000px",
-  height: "700px",
-  minHeight: "700px",
-  padding: "30px 30px 165px",
-  boxSizing: "border-box",
-  background: "linear-gradient(135deg, #061b17, #0d2922)",
-  border: "8px double #f5a623",
-  boxShadow: "0 0 0 3px #f5a623",
-  color: "#ffffff",
-  borderRadius: "0",
-  textAlign: "center",
-  overflow: "visible",
-position: "relative"
-});
-
-// PREMIUM INNER GOLD FRAME
-    
-Object.assign(exportCertificate.style, {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "flex-start",
-    position: "relative",
-    width: "1000px",
-    height: "700px",
-    minHeight: "700px",
-    padding: "30px 30px 165px",
-    boxSizing: "border-box",
-
-    background: `
-        radial-gradient(
-            ellipse at center,
-            #252019 0%,
-            #11100e 55%,
-            #050505 100%
-        )
-    `,
-
-    border: "7px double #c9a34a",
-    outline: "1px solid #f2d58a",
-    outlineOffset: "-13px",
-
-    boxShadow: `
-        0 0 20px rgba(201,163,74,.25),
-        0 0 45px rgba(0,0,0,.5)
-    `,
-
-    color: "#f8edcf",
-    borderRadius: "0",
-    textAlign: "center",
-    overflow: "hidden"
-});
-    
+        
 const innerFrame = document.createElement("div");
 
 Object.assign(innerFrame.style, {
