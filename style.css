@@ -1004,3 +1004,137 @@ a {
     overflow-x: hidden;
   }
 }
+
+/* ==================================
+   LUXURY ELITE - CINEMATIC EDITION
+================================== */
+
+#certificate-preview .certificate {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      ellipse at center,
+      #29231a 0%,
+      #11100e 55%,
+      #050505 100%
+    ) !important;
+  border: 5px double #c9a34a !important;
+  outline: 1px solid #f2d58a;
+  outline-offset: -13px;
+  color: #f8edcf !important;
+  box-shadow:
+    0 0 20px rgba(201,163,74,.22),
+    0 15px 45px rgba(0,0,0,.5) !important;
+  padding: 55px 30px !important;
+  text-align: center;
+}
+
+/* Brand heading */
+#certificate-preview .certificate::before {
+  content: "H A C K I N D I A";
+  display: block;
+  color: #e4c477;
+  font-family: Georgia, serif;
+  font-size: 19px;
+  font-weight: bold;
+  letter-spacing: 7px;
+  margin-bottom: 35px;
+  text-shadow: 0 0 12px rgba(228,196,119,.4);
+}
+
+/* Cinematic golden light sweep */
+#certificate-preview .certificate::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  inset: 16px;
+  border: 1px solid rgba(228,196,119,.65);
+  background: linear-gradient(
+    110deg,
+    transparent 35%,
+    rgba(255,220,145,.10) 50%,
+    transparent 65%
+  );
+  background-size: 250% 100%;
+  animation: luxurySweep 5s linear infinite;
+}
+
+@keyframes luxurySweep {
+  from { background-position: 100% 0; }
+  to { background-position: -150% 0; }
+}
+
+/* Keep certificate content above the light */
+#certificate-preview .certificate > * {
+  position: relative;
+  z-index: 1;
+}
+
+#certificate-preview .certificate h2 {
+  color: #e5c77f !important;
+  font-family: Georgia, serif;
+  font-size: 25px;
+  letter-spacing: 3px;
+  line-height: 1.5;
+  text-shadow: 0 0 12px rgba(229,199,127,.25);
+}
+
+#certificate-preview .certificate h1 {
+  color: #fff1c9 !important;
+  font-family: Georgia, serif;
+  font-size: 42px;
+  letter-spacing: 2px;
+  border-bottom: 2px solid #c9a34a;
+  padding-bottom: 15px;
+  text-shadow: 0 0 18px rgba(201,163,74,.25);
+}
+
+#certificate-preview .certificate p {
+  color: #ded3b8 !important;
+  font-family: Georgia, serif;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+#certificate-preview .certificate h3 {
+  color: #e5c77f !important;
+  font-family: Georgia, serif;
+  font-size: 23px;
+  letter-spacing: 2px;
+}
+
+#certificate-preview .achievement-tier {
+  display: inline-block !important;
+  width: fit-content;
+  padding: 10px 28px;
+  margin: 18px auto;
+  color: #17120a;
+  background: linear-gradient(
+    120deg,
+    #a77b2d,
+    #f5df9d,
+    #bd9140
+  );
+  border: 1px solid #ffe8a8;
+  border-radius: 3px;
+  font-family: Georgia, serif;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  box-shadow: 0 0 20px rgba(201,163,74,.25);
+}
+
+#certificate-preview .certificate small {
+  color: #e2c982 !important;
+  letter-spacing: 1.5px;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  #certificate-preview .certificate::after {
+    animation: none;
+  }
+}
