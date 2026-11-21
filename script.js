@@ -322,29 +322,30 @@ downloadButton.addEventListener("click", async function() {
             correctLevel: QRCode.CorrectLevel.H
         });
 
-        await html2pdf().set({
-            margin: 0,
-            filename: "HackIndia-Luxury-Certificate.pdf",
-            image: {
-                type: "jpeg",
-                quality: 1
-            },
-            html2canvas: {
-    scale: 2,
-    useCORS: true,
-    backgroundColor: "#11100e",
-    windowWidth: 1200,
-    windowHeight: 900,
-    scrollX: 0,
-    scrollY: 0
-},
-            },
-            jsPDF: {
-                unit: "mm",
-                format: "a4",
-                orientation: "landscape"
-            }
-        }).from(exportCertificate).save();
+        
+await html2pdf().set({
+    margin: 0,
+    filename: "HackIndia-Luxury-Certificate.pdf",
+    image: {
+        type: "jpeg",
+        quality: 1
+    },
+    html2canvas: {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: "#11100e",
+        windowWidth: 1200,
+        windowHeight: 900,
+        scrollX: 0,
+        scrollY: 0
+    },
+    jsPDF: {
+        unit: "mm",
+        format: "a4",
+        orientation: "landscape"
+    }
+}).from(exportCertificate).save();
+
 
     } catch (error) {
         console.error(error);
