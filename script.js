@@ -10,6 +10,9 @@ certificateForm.addEventListener("submit", function(event) {
 
     const studentName = document.querySelector("#student-name").value.trim();
     const courseName = document.querySelector("#course-name").value.trim();
+const achievementTier =
+    document.querySelector("#achievement-tier").value;
+
     const organization = document.querySelector("#organization").value.trim();
     const issueDate = document.querySelector("#issue-date").value;
 
@@ -29,6 +32,7 @@ certificateForm.addEventListener("submit", function(event) {
     records[certificateID] = {
         studentName,
         courseName,
+achievementTier,
         organization,
         issueDate: formattedDate
     };
@@ -43,6 +47,10 @@ certificateForm.addEventListener("submit", function(event) {
 
     const heading = document.createElement("h2");
     heading.textContent = "CERTIFICATE OF ACHIEVEMENT";
+
+const tierBadge = document.createElement("div");
+tierBadge.className = "achievement-tier";
+tierBadge.textContent = "★ " + achievementTier + " ★";
 
     const subtitle = document.createElement("p");
     subtitle.textContent = "This certificate is proudly presented to";
@@ -63,9 +71,15 @@ certificateForm.addEventListener("submit", function(event) {
     id.textContent = "Certificate ID: " + certificateID;
 
     certificate.append(
-        heading, subtitle, name, description,
-        organizationName, date, id
-    );
+    heading,
+    tierBadge,
+    subtitle,
+    name,
+    description,
+    organizationName,
+    date,
+    id
+);
 
     preview.replaceChildren(certificate);
 
