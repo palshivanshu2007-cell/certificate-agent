@@ -951,3 +951,56 @@ a {
   letter-spacing: 2px;
   box-shadow: 0 0 18px rgba(245,166,35,.35);
 }
+
+/* MOBILE RESPONSIVE FIX */
+@media (max-width: 900px) {
+  .generator-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 100%;
+    gap: 20px;
+  }
+
+  .generator-form-panel,
+  .preview-panel {
+    width: 100%;
+    min-width: 0;
+  }
+
+  #certificate-preview {
+    width: 100%;
+    min-width: 0;
+  }
+
+  #certificate-preview .certificate {
+    width: 100%;
+    max-width: 100%;
+    padding: 25px 12px;
+    overflow-wrap: anywhere;
+  }
+
+  #certificate-preview .certificate h1 {
+    font-size: clamp(22px, 6vw, 36px);
+  }
+
+  .achievement-tier {
+    max-width: 100%;
+    padding: 9px 18px;
+    letter-spacing: 1px;
+  }
+}
+
+@media (max-width: 600px) {
+  .generator-section {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .preview-heading {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+}
