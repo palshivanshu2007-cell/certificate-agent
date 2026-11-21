@@ -152,7 +152,44 @@ downloadButton.addEventListener("pointercancel", function() {
             padding: "30px"
         });
 
-        Object.assign(exportCertificate.style, {
+        // PREMIUM INNER GOLD FRAME
+
+Object.assign(exportCertificate.style, {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    position: "relative",
+    width: "1000px",
+    height: "700px",
+    minHeight: "700px",
+    padding: "30px 30px 165px",
+    boxSizing: "border-box",
+
+    background: `
+        radial-gradient(
+            ellipse at center,
+            #252019 0%,
+            #11100e 55%,
+            #050505 100%
+        )
+    `,
+
+    border: "7px double #c9a34a",
+    outline: "1px solid #f2d58a",
+    outlineOffset: "-13px",
+
+    boxShadow: `
+        0 0 20px rgba(201,163,74,.25),
+        0 0 45px rgba(0,0,0,.5)
+    `,
+
+    color: "#f8edcf",
+    borderRadius: "0",
+    textAlign: "center",
+    overflow: "hidden"
+});
+
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
