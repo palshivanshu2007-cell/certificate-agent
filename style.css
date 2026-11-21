@@ -930,3 +930,24 @@ a {
   letter-spacing: 1px;
   margin-top: 25px;
 }
+/* Achievement Tier Badge */
+.achievement-tier {
+  display: inline-block !important;
+  width: fit-content;
+  margin: 15px auto;
+  padding: 10px 28px;
+  color: #061b17;
+  background: linear-gradient(
+    120deg,
+    #f5a623,
+    #ffe6a3,
+    #f5a623
+  );
+  border: 1px solid #fff0bd;
+  border-radius: 30px;
+  font-family: Georgia, serif;
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  box-shadow: 0 0 18px rgba(245,166,35,.35);
+}
