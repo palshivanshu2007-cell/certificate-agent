@@ -330,9 +330,14 @@ downloadButton.addEventListener("click", async function() {
                 quality: 1
             },
             html2canvas: {
-                scale: 2,
-                useCORS: true,
-                backgroundColor: "#050505"
+    scale: 2,
+    useCORS: true,
+    backgroundColor: "#11100e",
+    windowWidth: 1200,
+    windowHeight: 900,
+    scrollX: 0,
+    scrollY: 0
+},
             },
             jsPDF: {
                 unit: "mm",
