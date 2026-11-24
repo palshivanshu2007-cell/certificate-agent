@@ -1471,3 +1471,45 @@ a {
     }
 }
 
+
+/* ===== Certificate Agent - Preview Fix ===== */
+
+.preview-panel {
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.preview-panel:has(#certificate-preview .certificate) .preview-placeholder {
+    display: none !important;
+}
+
+#certificate-preview {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+#certificate-preview .certificate {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+}
+
+@media (max-width: 600px) {
+    html, body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .preview-panel {
+        padding: 18px;
+    }
+
+    #certificate-preview .certificate {
+        padding: 24px 12px !important;
+    }
+}
