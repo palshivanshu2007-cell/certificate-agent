@@ -1,4 +1,6 @@
 
+const API_BASE = "https://certificate-agent-api.onrender.com";
+
 const certificateForm = document.querySelector("#certificate-form");
 const preview = document.querySelector("#certificate-preview");
 const verifyForm = document.querySelector("#verify-form");
@@ -11,10 +13,21 @@ function createElement(tag, className, text = "") {
     return element;
 }
 
+// Create a public verification URL
+function getVerificationURL(certificateID) {
+    const url = new URL(window.location.href);
+    url.search = "";
+    url.hash = "";
+    url.searchParams.set("verify", certificateID);
+    return url.toString();
+}
+
+// Build certificate design
 function buildCertificate(data) {
     const certificate = createElement("article", "certificate");
 
     const top = createElement("div", "certificate-top");
+
     top.append(
         createElement("div", "certificate-brand", "HACKINDIA"),
         createElement("div", "certificate-medal", "★")
@@ -46,11 +59,13 @@ function buildCertificate(data) {
 
     const qrSection = createElement("div", "certificate-qr-section");
     const qr = createElement("div", "certificate-qr");
+
     const qrLabel = createElement(
         "span",
         "certificate-qr-label",
-        "VERIFICATION ID"
+        "SCAN TO VERIFY"
     );
+
     const qrId = createElement(
         "span",
         "certificate-id",
@@ -71,22 +86,22 @@ function buildCertificate(data) {
     );
 
     footer.append(date, qrSection, signature);
-
     certificate.append(top, content, footer);
 
     return certificate;
 }
 
+// Generate QR code containing public verification URL
 function createQR(qrElement, certificateID) {
     if (typeof QRCode === "undefined") {
-        qrElement.textContent = certificateID;
+        qrElement.textContent = getVerificationURL(certificateID);
         return;
     }
 
     qrElement.innerHTML = "";
 
     new QRCode(qrElement, {
-        text: certificateID,
+        text: getVerificationURL(certificateID),
         width: 100,
         height: 100,
         colorDark: "#17130d",
@@ -95,8 +110,80 @@ function createQR(qrElement, certificateID) {
     });
 }
 
-// Generate Certificate
-certificateForm.addEventListener("submit", function(event) {
+// Display certificate and PDF download button
+function displayCertificate(data) {
+    const certificate = buildCertificate(data);
+
+    preview.replaceChildren(certificate);
+
+    createQR(
+        certificate.querySelector(".certificate-qr"),
+        data.certificateID
+    );
+
+    const downloadButton = createElement(
+        "button",
+        "certificate-download",
+        "↓  Download Certificate"
+    );
+
+    downloadButton.type = "button";
+
+    downloadButton.addEventListener("click", async function() {
+        if (typeof html2pdf === "undefined") {
+            alert("PDF library did not load. Please refresh the page.");
+            return;
+        }
+
+        const pdfCertificate = certificate.cloneNode(true);
+        const host = createElement("div", "pdf-export-host");
+
+        host.appendChild(pdfCertificate);
+        document.body.appendChild(host);
+
+        try {
+            createQR(
+                pdfCertificate.querySelector(".certificate-qr"),
+                data.certificateID
+            );
+
+            await html2pdf().set({
+                margin: 0,
+                filename: "HackIndia-" + data.certificateID + ".pdf",
+                image: {
+                    type: "jpeg",
+                    quality: 1
+                },
+                html2canvas: {
+                    scale: 2,
+                    useCORS: true,
+                    backgroundColor: "#10100e"
+                },
+                jsPDF: {
+                    unit: "mm",
+                    format: "a4",
+                    orientation: "landscape"
+                }
+            }).from(pdfCertificate).save();
+
+        } catch (error) {
+            console.error("PDF error:", error);
+            alert("PDF generation failed. Please try again.");
+        } finally {
+            host.remove();
+        }
+    });
+
+    preview.appendChild(downloadButton);
+
+    preview.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+}
+
+// Create certificate through backend
+certificateForm.addEventListener("submit", async function(event) {
     event.preventDefault();
 
     const studentName =
@@ -120,7 +207,8 @@ certificateForm.addEventListener("submit", function(event) {
     }
 
     const certificateID =
-        "CA-" + Date.now().toString().slice(-8);
+        "CA-" + Date.now().toString(36).toUpperCase() +
+        "-" + Math.random().toString(36).slice(2, 7).toUpperCase();
 
     const formattedDate = new Date(issueDate + "T00:00:00")
         .toLocaleDateString("en-IN", {
@@ -129,122 +217,138 @@ certificateForm.addEventListener("submit", function(event) {
             year: "numeric"
         });
 
-    const data = {
-        studentName,
-        courseName,
-        achievementTier,
-        organization,
-        issueDate: formattedDate,
-        certificateID
-    };
-
-    const records = JSON.parse(
-        localStorage.getItem("certificateAgentRecords") || "{}"
+    const button = certificateForm.querySelector(
+        'button[type="submit"]'
     );
 
-    records[certificateID] = data;
+    if (button) button.disabled = true;
 
-    localStorage.setItem(
-        "certificateAgentRecords",
-        JSON.stringify(records)
-    );
+    try {
+        const response = await fetch(
+            API_BASE + "/api/certificates",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    certificateId: certificateID,
+                    recipientName: studentName,
+                    achievementTitle: courseName,
+                    tier: achievementTier,
+                    issuerName: organization,
+                    description: "Achievement certificate"
+                })
+            }
+        );
 
-    const certificate = buildCertificate(data);
+        const result = await response.json();
 
-    preview.replaceChildren(certificate);
-
-    createQR(
-        certificate.querySelector(".certificate-qr"),
-        certificateID
-    );
-
-    const downloadButton = createElement(
-        "button",
-        "certificate-download",
-        "↓  Download Certificate"
-    );
-
-    downloadButton.type = "button";
-
-    downloadButton.addEventListener("click", async function() {
-        if (typeof html2pdf === "undefined") {
-            alert("PDF library did not load. Please refresh the page.");
-            return;
-        }
-
-        const pdfCertificate = certificate.cloneNode(true);
-
-        const host = createElement("div", "pdf-export-host");
-        host.appendChild(pdfCertificate);
-        document.body.appendChild(host);
-
-        try {
-            createQR(
-                pdfCertificate.querySelector(".certificate-qr"),
-                certificateID
+        if (!response.ok || !result.success) {
+            throw new Error(
+                result.message || "Certificate creation failed."
             );
-
-            await html2pdf().set({
-                margin: 0,
-                filename: "HackIndia-" + certificateID + ".pdf",
-                image: {
-                    type: "jpeg",
-                    quality: 1
-                },
-                html2canvas: {
-                    scale: 2,
-                    useCORS: true,
-                    backgroundColor: "#10100e"
-                },
-                jsPDF: {
-                    unit: "mm",
-                    format: "a4",
-                    orientation: "landscape"
-                }
-            }).from(pdfCertificate).save();
-
-        } catch (error) {
-            console.error("Certificate PDF error:", error);
-            alert("PDF generation failed. Please try again.");
-        } finally {
-            host.remove();
         }
-    });
 
-    preview.appendChild(downloadButton);
+        const data = {
+            studentName,
+            courseName,
+            achievementTier,
+            organization,
+            issueDate: formattedDate,
+            certificateID
+        };
 
-    preview.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-    });
+        displayCertificate(data);
+
+    } catch (error) {
+        console.error("Certificate creation error:", error);
+
+        alert(
+            "Unable to create certificate. Please check your internet connection and try again."
+        );
+
+    } finally {
+        if (button) button.disabled = false;
+    }
 });
 
-// Verify Certificate
-verifyForm.addEventListener("submit", function(event) {
+// Verify certificate using backend database
+async function verifyCertificate(certificateID) {
+    verificationResult.textContent = "Checking certificate...";
+    verificationResult.className = "";
+
+    try {
+        const response = await fetch(
+            API_BASE + "/api/certificates/" +
+            encodeURIComponent(certificateID)
+        );
+
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+            throw new Error(
+                result.message || "Certificate not found."
+            );
+        }
+
+        const record = result.certificate;
+
+        verificationResult.textContent =
+            "Certificate verified! Awarded to " +
+            record.recipientName +
+            " for " +
+            record.achievementTitle +
+            " by " +
+            record.issuerName +
+            ". Certificate ID: " +
+            record.certificateId;
+
+        verificationResult.className = "verification-success";
+
+    } catch (error) {
+        console.error("Verification error:", error);
+
+        verificationResult.textContent =
+            error.message === "Certificate not found."
+                ? "No matching certificate found. Please check the Certificate ID."
+                : "Unable to verify certificate. Please try again.";
+
+        verificationResult.className = "verification-error";
+    }
+}
+
+// Verification form submission
+verifyForm.addEventListener("submit", async function(event) {
     event.preventDefault();
 
     const enteredID = document.querySelector("#certificate-id")
         .value.trim().toUpperCase();
 
-    const records = JSON.parse(
-        localStorage.getItem("certificateAgentRecords") || "{}"
-    );
-
-    const record = records[enteredID];
-
-    if (record) {
-        verificationResult.textContent =
-            "Certificate verified! Awarded to " +
-            record.studentName + " for " +
-            record.courseName + " by " +
-            record.organization + " on " +
-            record.issueDate + ".";
-
-        verificationResult.className = "verification-success";
-    } else {
-        verificationResult.textContent =
-            "No matching certificate found. Please check the Certificate ID.";
-
-        verificationResult.className = "verification-error";
+    if (!enteredID) {
+        alert("Please enter a Certificate ID.");
+        return;
     }
+
+    await verifyCertificate(enteredID);
 });
+
+// Automatically verify when QR link is opened
+const urlParams = new URLSearchParams(window.location.search);
+const verificationID = urlParams.get("verify");
+
+if (verificationID) {
+    const certificateInput =
+        document.querySelector("#certificate-id");
+
+    if (certificateInput && verifyForm) {
+        certificateInput.value = verificationID.toUpperCase();
+
+        verifyCertificate(verificationID.toUpperCase());
+
+        verifyForm.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    }
+}
