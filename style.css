@@ -1513,3 +1513,22 @@ a {
         padding: 24px 12px !important;
     }
 }
+
+/* Certificate ID Visibility Fix */
+#certificate-preview .certificate-id {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #ffe6a0 !important;
+    font-size: 12px !important;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-top: 5px;
+    overflow-wrap: anywhere;
+    text-align: center;
+}
+
+#certificate-preview .certificate-id::before {
+    content: "CERTIFICATE ID: ";
+    color: #d9b45f;
+}
